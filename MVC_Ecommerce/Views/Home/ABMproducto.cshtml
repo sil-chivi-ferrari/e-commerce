@@ -1,0 +1,70 @@
+﻿@using Dominio;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Producto> lista = ((List<Producto>)ViewBag.ListaDeProductos);
+}
+
+
+
+<div class="container" style="background-color:lightslategray; width: 100%; margin-top: 100px;border-radius:5px" >
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr style="font-size:20px;" class="letra">
+                    <td><strong>Nombre:</strong> </td>
+                    <td><strong>Precio:</strong>  </td>
+                    <td><strong>Imagen:</strong> </td>
+                    <td><strong>color:</strong> </td>
+                    <td><strong>Talle:</strong> </td>
+                    <td><strong>Tipo:</strong> </td>
+                    <td><strong>Stock actual:</strong> </td>
+                    <td><strong>Acciones:</strong> </td>
+                </tr>
+
+
+                @{
+
+
+                    foreach (var item in lista)
+                    {
+
+                        if (item.Estado == true)
+                        {
+
+                                <tr style="font-size:15px">
+                                    <td>
+                                        @item.Nombre
+                                    </td>
+                                    <td>@item.Precio</td>
+                                    <td>
+                                        <img src="@item.UrlImagen" style="width: 60px; height: 60px;" class="card-img-top" alt="...">
+                                    </td>
+                                    <td>@item.color.Nombre</td>
+                                    <td>@item.talle.Nombre</td>
+                                    <td>@item.tipoProducto.Nombre</td>
+                                    <td>@item.StockActual</td>
+
+
+
+                                    <td>
+                                        <a href="@Url.Action("FormAltaProducto", "Home", new { idAux = item.Id })" class="btn btn-primary"style="font-size:15px">Modificar</a>
+
+                                        <a href="@Url.Action("BajaLogicaProducto", "Home", new { idAux = item.Id })" class="btn btn-danger"style="font-size:15px">Eliminar</a>
+
+                                    </td>
+
+                                </tr>
+
+                        }
+
+                    }
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+<div style="margin-top:30px;">
+    <a href="@Url.Action("FormAltaProducto","Home")" class="btn btn-primary" style="font-size: 15px">Alta de producto</a>
+
+</div>

@@ -1,0 +1,22 @@
+﻿@using Dominio
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var formadePago = (byte)ViewBag.formadePago;
+}
+
+<div class="container" style=" margin-top:10px; border-radius:30px; background: url('https://i.pinimg.com/564x/31/fe/ae/31feae47ab827ac12dfd359d7a945d69.jpg'); background-size: cover; width:800px; height:100vh">
+    <div class="container" style="margin-top: 30px; text-align:center">
+        @if (formadePago == 3)
+        {
+            <h3>Ya tenemos tus datos. Gracias por usar Mercado Pago</h3>
+        }
+        else if (formadePago == 2)
+        {
+            <h3> Ya tenemos tus datos. En breves nos comunicamaos para la transferencia</h3>
+        }
+        else
+        {
+            <h3> Compra realizada con tarjeta. </h3>
+        }
+    </div>
+</div>

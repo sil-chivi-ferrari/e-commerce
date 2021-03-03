@@ -1,0 +1,72 @@
+﻿
+@using Dominio;
+@*@model Dominio.Producto*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Producto> lista = ((List<Producto>)ViewBag.ListaDeProductos);
+    var ListaColores = ((List<Color>) ViewBag.ColorRemera);
+    var ListaTalles = ((List<Talle>)ViewBag.TalleRemera);
+    var ListaTipos = ((List<TipoProducto>)ViewBag.TipoRemera);
+
+}
+    <form action="@Url.Action("Catalogo", "Home")" method="get">
+        <div class="container" style=" margin-top: 20px; font-size:15px; JUSTIFY-CONTENT:CENTER ">
+
+
+            <div style="display:flex; justify-content:space-around;background:rgb(128, 128, 128,0.6);padding:10px">
+                <input type="search" name="busqueda"
+                       class="form-control" style="font-size:15px" placeholder="Buscá la remera que querés" />
+                <button type="submit" class="botoncopia"> Buscar</button>
+
+                @Html.DropDownList("Colores", new SelectList(ListaColores,
+            nameof(Color.Id), nameof(Color.Nombre)), "COLORES", new { @class = "cssInputcat" })
+
+                @Html.DropDownList("Talles", new SelectList(ListaTalles,
+            nameof(Talle.Id), nameof(Talle.Nombre)), "TALLES", new { @class = "cssInputcat" })
+
+                @Html.DropDownList("Tipo", new SelectList(ListaTipos,
+            nameof(TipoProducto.Id), nameof(TipoProducto.Nombre)), "TIPOS DE REMERA", new { @class = "cssInputcate" })
+
+
+
+
+            </div>
+
+        </div>
+    </form>
+    <div class="container">
+        <div class="row">
+
+
+            @{
+
+
+                foreach (var item in lista)
+                {
+                    if (item.Estado == true)
+                    {
+
+
+                        <div class="col-lg-4 d-flex align-items-stretch">
+                            <div class="card" style="width: 30rem; margin-top:30px;">
+                                            <div class="card-body">
+                                                <img src="@item.UrlImagen" class="card-img-top" alt="...">
+
+                                                <div style="padding-left:60px;">
+                                                    <h5 class="card-title" style="font-weight:bold">Nombre: @item.Nombre</h5>
+                                                    <h5 class="card-title" style="font-weight:bold">Precio: $@item.Precio </h5>
+                                                   
+                                                        <a href="@Url.Action("Detalle", "Home", new { idAux = item.Id })" class="btn btn-primary" style="font-size:15px">Ver detalle</a>
+                                                        <a href="@Url.Action("Agregar", "Home", new { idAux = item.Id })" class="btn btn-primary" style="font-size:15px">Agregar</a>
+                                                    
+                                                    </div>
+                                            </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
+
+        </div>
+    </div>

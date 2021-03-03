@@ -1,0 +1,21 @@
+﻿@model Dominio.Estado
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" style="background-color:lightslategray; width:60%; margin-top: 100px; font-size:15px">
+    <form action="@Url.Action("FormAltaEstados","Home")" method="post">
+
+
+        @Html.HiddenFor(x => x.Id)
+        <label style="font-size:20px">Estados</label>
+
+        @Html.TextBoxFor(x => x.Estados)
+
+
+
+
+        <button type="submit" class="botoncopia">Guardar </button>
+    </form>
+</div>

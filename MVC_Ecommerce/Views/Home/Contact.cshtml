@@ -1,0 +1,16 @@
+﻿@using Dominio;
+
+@{
+    ViewBag.Title = "Contact";
+     var TipoRemera = (List<TipoProducto>)ViewBag.tipoRemera;
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+
+<form action="@Url.Action("Contact","Home")" method="post">
+    @Html.DropDownList("tipoRemera", new SelectList(TipoRemera, nameof(TipoProducto.Id),nameof(TipoProducto.Nombre)), "seleccione un tipo")
+<button type="submit"> Guardar</button>
+</form>
+

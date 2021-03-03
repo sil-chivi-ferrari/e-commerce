@@ -1,0 +1,103 @@
+﻿@using Dominio;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lista = ((List<ItemCarrito>)ViewBag.ListaCarrito);
+    decimal acu = Convert.ToDecimal(ViewBag.Acumulador);
+
+
+
+}
+
+
+
+<div class="container" style="background-color:lightslategray; width: 80%; margin-top: 100px; border-radius:5px;">
+
+
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr style="font-size:20px" class="letra">
+                    <td><strong>Nombre:</strong> </td>
+                    <td><strong>Precio unidad:</strong>  </td>
+                    <td><strong>Imagen:</strong> </td>
+                    <td><strong>Cantidad:</strong> </td>
+                    <td><strong>Precio:</strong> </td>
+
+                    <td><strong>Acciones:</strong> </td>
+                </tr>
+
+
+
+
+
+                @foreach (var item in lista)
+                {
+
+
+
+                    <tr style="font-size:15px">
+                        <td>
+                            @item.Nombre
+                        </td>
+                        <td>@item.Precio</td>
+                        <td>
+                            <img src="@item.UrlImagen" style="width: 60px; height: 60px;" class="card-img-top" alt="...">
+                        </td>
+
+                        <td>
+                            @item.CantidadItem
+                        </td>
+
+                        <td>
+                            @item.PrecioFinal
+
+                        </td>
+
+
+                        <td>
+                            <a href="@Url.Action("Detalle", "Home", new { idAux = item.IdProducto })" class="btn btn-primary">Ver detalle</a>
+
+                            <a href="@Url.Action("Eliminar", "Home", new { idAux = item.IdProducto })" class="btn btn-danger">Eliminar</a>
+                            @if (item.CantidadItem > 1)
+                            {
+                                <a href="@Url.Action("QuitarUnItem", "Home", new { idAux = item.IdProducto })" class="btn btn-danger">Quitar uno</a>
+
+
+
+
+                            }
+                        </td>
+
+
+                    </tr>
+
+
+                }
+
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color:antiquewhite; width: 10%; margin-left:870px; margin-top:10px; border-radius:5px;">
+
+    <h4> Precio final: </h4>
+    @*<h4>@acu</h4>*@
+    <h4>@acu</h4>
+</div>
+
+@if (lista.Count == 0)
+{
+    <h1 style="margin-left:320px;color:darkred"><i class="far fa-frown-open"></i> Ups, tu carrito esta vacío <i class="far fa-frown-open"></i></h1>
+}
+<div style="margin-top:10px; margin-left:100px; ">
+    @if (lista.Count >= 1)
+    {
+        <a href="@Url.Action("Compra", "Home")" class="btn btn-primary" style="font-size: 15px">Comprar</a>
+    }
+    <a href="@Url.Action("Catalogo", "Home")" class="btn btn-primary" style="font-size: 15px">Seguir mirando</a>
+
+
+</div>

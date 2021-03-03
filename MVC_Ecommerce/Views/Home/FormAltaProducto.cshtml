@@ -1,0 +1,106 @@
+﻿@model Dominio.Producto
+@using Dominio;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var TipoRemera = (List<TipoProducto>)ViewBag.tipoRemera;
+    var ColorRemera = (List<Color>)ViewBag.colorRemera;
+    var TalleRemera = (List<Talle>)ViewBag.talleRemera;
+}
+
+@*action lo que hace es a donde va a mandar el form*@
+
+<div class="container" style="background-color:lightslategray; width:30%; margin-top: 100px; font-size:15px; border-radius:5px">
+    <form action="@Url.Action("FormAltaProducto","Home")" method="post">
+
+        @*el id lo necesito para cuando el form sea de editar*@
+        @Html.HiddenFor(x => x.Id)
+       
+        <div class="container" style="align-content: center;  margin-top:30px;margin-bottom:30px ">
+            <label>Tipo de remera</label>
+            @Html.DropDownListFor(x => x.IdTipo, new SelectList(TipoRemera,
+            nameof(TipoProducto.Id), nameof(TipoProducto.Nombre)), "seleccione un tipo", new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.tipoProducto.Nombre)
+
+            <br />
+            <label> Precio </label>
+
+            @Html.TextBoxFor(x => x.Precio, new { @class = "cssInput" })
+            <br />
+            <label> Imagen </label>
+            @Html.TextBoxFor(x => x.UrlImagen, new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.UrlImagen)
+            <br />
+            <label> Nombre </label>
+            @Html.TextBoxFor(x => x.Nombre, new { @class = "cssInput", placeholder = "" })
+            @Html.ValidationMessageFor(x => x.Nombre)
+
+            <br />
+
+            @*<label > Talle </label >
+        @Html.TextBoxFor(x => x.IdTalle)*@
+            <label> Talle </label>
+            @Html.DropDownListFor(x => x.IdTalle, new SelectList(TalleRemera,
+           nameof(Talle.Id), nameof(Talle.Nombre)), "Seleccione un talle", new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.talle.Nombre)
+            <br />
+            <label> Descripcion </label>
+            @Html.TextBoxFor(x => x.Descripcion, new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.talle)
+            <br />
+            @*<label> Estado </label>
+        @Html.CheckBoxFor(x => x.Estado)*@
+            <label> Color </label>
+            @Html.DropDownListFor(x => x.IdColor, new SelectList(ColorRemera,
+          nameof(Color.Id), nameof(Color.Nombre)), "Seleccione un color", new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.color.Nombre)
+            <br />
+            <label> Stock minimo </label>
+            @Html.TextBoxFor(x => x.StockMinimo, new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.StockMinimo)
+            <br />
+            <label> Stock actual </label>
+            @Html.TextBoxFor(x => x.StockActual, new { @class = "cssInput" })
+            @Html.ValidationMessageFor(x => x.StockActual)
+
+            <br />
+        <button type="submit" class="botoncopia" style="float:right; margin-top:10px">Guardar </button>
+        </div>
+    </form>
+    </div>
+    @*<form action="@Url.Action("FormAltaProducto","Home")" method="post">
+
+            <label>NOMBRE </label>
+            <input type="text" name="Nombre" value="" />
+            <br />
+            <label>TipoRemera </label>
+            <input type="number" name="TipoRemera" value="" />
+            <br />
+            <label>Descripción </label>
+            <input type="text" name="Descripcion" value="" />
+            <br />
+            <label>Talle </label>
+            <input type="text" name="Talle" value="" />
+            <br />
+            <label>Color </label>
+            <input type="text" name="Color" value="" />
+            <br />
+            <label>Imagen </label>
+            <input type="text" name="Imagen" value="" />
+            <br />
+            <label> Precio</label>
+            <input type="number" name="Precio" value="" />
+            <br />
+            <label>Estado </label>
+            <input type="text" name="Estado" value="" />
+            <br />
+            <label>StockActual </label>
+            <input type="number" name="StockActual" value="" />
+            <br />
+            <label>StockMinimo </label>
+            <input type="number" name="StockMinimo" value="" />
+            <br />
+            <button type="submit">Guardar</button>
+
+
+        </form>*@

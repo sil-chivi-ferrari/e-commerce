@@ -1,0 +1,76 @@
+﻿@using Dominio
+@model Pedido
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lista = ((List<Estado>)ViewBag.Estado);
+    var usuario = (Usuario)ViewBag.usuario;
+
+}
+
+
+
+<div class="container" style="background-color:lightslategray; width: 80%; margin-top:100px; border-radius:5px;">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr style="font-size:20px">
+                    <td><strong>Nombre:</strong> </td>
+                    <td><strong>Precio:</strong>  </td>
+                    <td><strong>Imagen:</strong> </td>
+                    <td><strong>Cantidad:</strong> </td>
+
+                   
+                </tr>
+
+
+
+                @foreach (var item in Model.listaDetalle)
+                {
+
+                    <tr style="font-size:15px">
+                        <td>
+                            @item.NombreActual
+                        </td>
+                        <td>@item.PrecioActual</td>
+                        <td>
+                            <img src="@item.UrlImagen" style="width: 60px; height: 60px;" class="card-img-top" alt="...">
+                        </td>
+
+                        <td>
+                            @item.CantidadPedida
+                        </td>
+
+
+                       
+                    </tr>
+
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color:antiquewhite; width: 10%; margin-left:870px; margin-top:10px; border-radius:5px;">
+    @*<h4> Precio final: </h4>*@
+
+</div>
+@if (usuario.IdTipoUsiario == 1)
+{
+    <form action="@Url.Action("DetallePedido", "Home")" method="post">
+        <div style="margin-left:10%;">
+            @Html.HiddenFor(x => x.Id)  @*html no entiende de objetos, entonces necesito ponerselo*@
+
+            @Html.DropDownListFor(x => x.IdEstado, new SelectList(lista, nameof(Estado.Id), nameof(Estado.NombreEstado)), "seleccione un tipo", new { @class = "cssInputcate" })
+            <button type="submit" class="botoncopia" style="display:block; margin-top:10px"> Guardar</button>
+
+        </div>
+        <br />
+    </form>
+}
+    @*
+        <div style="margin-top:10px; margin-left:100px;">
+            <a href="@Url.Action("ConfirmacionCompra","Home")" class="btn btn-primary">Confirmar compra</a>
+            <a href="@Url.Action("Compra", "Home")" class="btn btn-danger">??</a>
+
+
+        </div>*@

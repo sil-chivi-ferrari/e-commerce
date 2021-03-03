@@ -1,0 +1,6 @@
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\bin\Debug\Dominio.dll
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\obj\Debug\Dominio.dll
+C:\Users\Chivi\Desktop\ProyectoCuatrimestral\Dominio\obj\Debug\Dominio.pdb

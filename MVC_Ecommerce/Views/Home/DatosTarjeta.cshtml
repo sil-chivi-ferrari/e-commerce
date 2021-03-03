@@ -1,0 +1,19 @@
+﻿@using Dominio
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var creditoDebito = (List<Combo>)ViewBag.tipoTarjeta;
+}
+
+
+<div class="container" style="background-color:lightslategray;width: 50%;height:150px; margin-top: 100px; border-radius:5px; padding-top:50px">
+
+    <form action="@Url.Action("DatosTarjeta","Home")" method="post">
+        <label>Tipo de tarjeta</label>
+        @Html.DropDownList("dato", new SelectList(creditoDebito,
+        nameof(TipoPago.Nombre), nameof(TipoPago.Nombre)), "seleccione un tipo", new { @class = "cssInput" })
+
+        <button type="submit" class="botoncopia" style="margin-left:10px">Guardar </button>
+
+        @*@Html.ValidationMessageFor(x => x.tipoProducto.Nombre)*@
+    </form>
+</div>

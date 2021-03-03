@@ -1,0 +1,56 @@
+﻿@using Dominio;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lista = ((List<TipoProducto>)ViewBag.ListaTipoRemera);
+}
+
+
+<div class="container" style="background-color:lightslategray; width: 50%; margin-top: 100px; border-radius:5px">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr style="font-size:20px" class="letra">
+                    <td><strong>Nombre:</strong> </td>
+
+
+                    <td><strong>Acciones:</strong> </td>
+                </tr>
+
+
+                @{
+
+
+                    foreach (var item in lista)
+                    {
+
+                        if (item.Estado == true)
+                        {
+
+                        <tr style="font-size:15px">
+                            <td>
+                                @item.Nombre
+                            </td>
+
+
+                            <td>
+                                <a href="@Url.Action("FormAltaTipoRemera", "Home", new { idAux = item.Id })" class="btn btn-primary"style="font-size:15px">Editar</a>
+
+                                <a href="@Url.Action("BajaLogicaTipoRemera", "Home", new { idAux = item.Id })" class="btn btn-danger"style="font-size:15px">Eliminar (baja logica)</a>
+
+                            </td>
+
+                        </tr>
+
+                        }
+
+                    }
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+<div style="margin-top:30px;">
+    <a href="@Url.Action("FormAltaTipoRemera","Home")" class="btn btn-primary" style="margin-left:275px;font-size:15px">Alta de tipos de remeres</a>
+
+</div>

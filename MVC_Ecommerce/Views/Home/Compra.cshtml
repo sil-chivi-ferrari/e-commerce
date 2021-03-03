@@ -1,0 +1,73 @@
+﻿@using Dominio
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var DetalleCarrito = (List<DetalleCarrito>)ViewBag.DetalleCarrito;
+    decimal acu = ViewBag.Acu;
+
+}
+<h3 style="text-align:center; color:black;  background-color:lightcoral;padding:5px; width:350px;margin:0 auto; margin-top:30px;">
+    <i class="fas fa-bullhorn"></i>    CONFIRMACIÓN DE COMPRA
+</h3>
+
+<div class="container" style="background-color:lightslategray; width: 80%; margin-top:50px; border-radius:5px;">
+    >
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr style="font-size:20px">
+                    <td><strong>Nombre:</strong> </td>
+                    <td><strong>Precio:</strong>  </td>
+                    <td><strong>Imagen:</strong> </td>
+                    <td><strong>Cantidad:</strong> </td>
+
+                    
+                </tr>
+
+
+
+
+
+                @foreach (var item in DetalleCarrito)
+                {
+
+
+                    <tr style="font-size:15px">
+                        <td>
+                            @item.NombreActual
+                        </td>
+                        <td>@item.PrecioActual</td>
+                        <td>
+                            <img src="@item.UrlImagen" style="width: 60px; height: 60px;" class="card-img-top" alt="...">
+                        </td>
+
+                        <td>
+                            @item.CantidadPedida
+                        </td>
+
+
+                        
+                    </tr>
+
+
+                }
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="background-color:antiquewhite; width: 10%; margin-left:870px; margin-top:10px; border-radius:5px;">
+    <h4> Precio final: </h4>
+    <h4>@acu</h4>
+</div>
+<div style="margin-top:10px; margin-left:100px;">
+    @if (Session["TipoUsuario"] != null)
+    {
+        <a href="@Url.Action("ConfirmacionDatos", "Home")" class="btn btn-primary"  style="font-size: 15px">Confirmar Datos</a>
+    }
+    <a href="@Url.Action("Catalogo", "Home")" class="btn btn-primary"  style="font-size: 15px"> seguir mirando</a>
+
+
+</div>

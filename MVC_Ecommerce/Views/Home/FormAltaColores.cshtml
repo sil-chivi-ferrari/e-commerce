@@ -1,0 +1,21 @@
+﻿@model Dominio.Color
+@*@using Dominio;*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="background-color:lightslategray; width: 50%;height:150px; margin-top: 100px; border-radius:5px; padding-top:50px">
+    <form action="@Url.Action("FormAltaColores","Home")" method="post">
+
+
+        @Html.HiddenFor(x => x.Id)
+        <label style="font-size:20px">Color</label>
+
+        @Html.TextBoxFor(x => x.Nombre, new { @class = "cssInput" })
+        @Html.ValidationMessageFor(x => x.Nombre)
+
+
+
+        <button type="submit" class="botoncopia">Guardar </button>
+    </form>
+</div>
